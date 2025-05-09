@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Player Streamtape</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    iframe {
+      width: 100%;
+      height: 100vh;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const lang = params.get("lang");
+    const logo = params.get("logo");
+
+    if (!id) {
+      document.body.innerHTML = "<h2>ID do vídeo não fornecido!</h2>";
+    } else {
+      const embed = `https://streamtape.com/e/${id}`;
+      const src = `${embed}?lang=${encodeURIComponent(lang || "")}&logo=${encodeURIComponent(logo || "")}`;
+
+      document.body.innerHTML = `<iframe src="${src}" allowfullscreen></iframe>`;
+    }
+  </script>
+</body>
+</html>
